@@ -1,0 +1,103 @@
+[gd_scene load_steps=10 format=3 uid="uid://b485h2iu3h7pk"]
+
+[ext_resource type="Script" path="res://mobs/Enemy.cs" id="1_ixxcp"]
+[ext_resource type="Texture2D" uid="uid://d2xswrpumc14w" path="res://ASSets/enemy.png" id="2_4afdg"]
+[ext_resource type="PackedScene" uid="uid://cm7631fr7mb63" path="res://hud/HealthBar.tscn" id="2_n5axx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k83rq"]
+size = Vector2(4, 4)
+
+[sub_resource type="Animation" id="Animation_yordo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_k02yt"]
+resource_name = "idle"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v0w04"]
+_data = {
+"RESET": SubResource("Animation_yordo"),
+"idle": SubResource("Animation_k02yt")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ubui"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0316f"]
+radius = 8.0
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_ixxcp")
+
+[node name="HealthBar" parent="." instance=ExtResource("2_n5axx")]
+position = Vector2(-6, -6)
+
+[node name="Enemy" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+use_parent_material = true
+texture = ExtResource("2_4afdg")
+hframes = 6
+
+[node name="ledgeDetection" type="RayCast2D" parent="Enemy"]
+position = Vector2(2.4, -2)
+scale = Vector2(0.4, 0.4)
+exclude_parent = false
+target_position = Vector2(0, 24.11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_k83rq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v0w04")
+}
+
+[node name="AggroTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="ChangeDirectionTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="AttackCoolDownTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="AttackBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox"]
+shape = SubResource("CircleShape2D_6ubui")
+
+[node name="AggroArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea"]
+shape = SubResource("CircleShape2D_0316f")

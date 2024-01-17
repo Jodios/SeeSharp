@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://e1twuuuf7tgk"]
+
+[ext_resource type="Script" path="res://Door.cs" id="1_wotj6"]
+[ext_resource type="Texture2D" uid="uid://7txoqysl1c0a" path="res://ASSets/door.png" id="1_xithy"]
+
+[sub_resource type="Animation" id="Animation_v38gx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_jnodf"]
+resource_name = "RESET_OPEN"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_hqdsb"]
+resource_name = "open"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q6jmb"]
+_data = {
+"RESET": SubResource("Animation_v38gx"),
+"RESET_OPEN": SubResource("Animation_jnodf"),
+"open": SubResource("Animation_hqdsb")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3r2w"]
+size = Vector2(5, 8)
+
+[node name="Door" type="AnimatableBody2D"]
+script = ExtResource("1_wotj6")
+
+[node name="Door" type="Sprite2D" parent="."]
+texture = ExtResource("1_xithy")
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_q6jmb")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_f3r2w")
