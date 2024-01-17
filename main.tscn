@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cslbpxq0nj7ib"]
+
+[ext_resource type="PackedScene" uid="uid://daodcpuf87iob" path="res://littleFella.tscn" id="1_sgc6n"]
+[ext_resource type="PackedScene" uid="uid://byuf41i1wbxq6" path="res://tile_map.tscn" id="2_wc2rh"]
+
+[node name="main" type="Node2D"]
+
+[node name="Sprite2D" parent="." instance=ExtResource("1_sgc6n")]
+position = Vector2(17, 34)
+
+[node name="TileMap" parent="." instance=ExtResource("2_wc2rh")]
+rendering_quadrant_size = 8
+layer_0/tile_data = PackedInt32Array(327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 262154, 0, 0, 196618, 0, 0, 131082, 0, 0, 65546, 0, 0, 10, 0, 0, 9, 0, 0, 8, 0, 0, 7, 0, 0, 6, 0, 0, 5, 0, 0, 4, 0, 0, 3, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0)

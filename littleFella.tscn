@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://daodcpuf87iob"]
+
+[ext_resource type="Texture2D" uid="uid://cu3dbsse5v6ua" path="res://ASSets/little-feller.png" id="1_8nu20"]
+[ext_resource type="Script" path="res://littleFella.cs" id="2_mwsjt"]
+
+[sub_resource type="Animation" id="Animation_4g27f"]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Little-feller:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_x03ji"]
+resource_name = "idle"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Little-feller:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_knukk"]
+_data = {
+"RESET": SubResource("Animation_4g27f"),
+"idle": SubResource("Animation_x03ji")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0w3u"]
+size = Vector2(6, 3.5)
+
+[node name="LittleFella" type="CharacterBody2D"]
+script = ExtResource("2_mwsjt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_knukk")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(1, 3.25)
+shape = SubResource("RectangleShape2D_k0w3u")
+
+[node name="Little-feller" type="Sprite2D" parent="."]
+position = Vector2(1, 1)
+texture = ExtResource("1_8nu20")
+hframes = 6
