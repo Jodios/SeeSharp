@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://daodcpuf87iob"]
 
-[ext_resource type="Texture2D" uid="uid://2auwcqvu01fl" path="res://ASSets/little-feller.png" id="1_8nu20"]
+[ext_resource type="Texture2D" uid="uid://bc71auwgxdcns" path="res://assets/little-feller.png" id="1_8nu20"]
 [ext_resource type="Script" path="res://player/LittleFella.cs" id="1_xgbcd"]
 [ext_resource type="PackedScene" uid="uid://cm7631fr7mb63" path="res://hud/HealthBar.tscn" id="3_bj5ir"]
 
@@ -46,7 +46,7 @@ _data = {
 size = Vector2(4, 4)
 
 [node name="LittleFella" type="CharacterBody2D"]
-collision_layer = 4
+collision_layer = 2147483652
 collision_mask = 15
 script = ExtResource("1_xgbcd")
 

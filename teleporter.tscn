@@ -1,3 +1,66 @@
-[gd_scene format=3 uid="uid://c1i2tti5hpriy"]
+[gd_scene load_steps=7 format=3 uid="uid://c1i2tti5hpriy"]
+
+[ext_resource type="Script" path="res://Teleporter.cs" id="1_iy87g"]
+[ext_resource type="Texture2D" uid="uid://begpa8yfnbtcd" path="res://assets/teleportation_animation.png" id="1_tyn3j"]
+
+[sub_resource type="Animation" id="Animation_2q3si"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TeleportationAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_nwjt7"]
+resource_name = "teleporter"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TeleportationAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7g53o"]
+_data = {
+"RESET": SubResource("Animation_2q3si"),
+"teleporter": SubResource("Animation_nwjt7")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jy8wo"]
+size = Vector2(8, 1)
 
 [node name="Teleporter" type="Node2D"]
+script = ExtResource("1_iy87g")
+
+[node name="TeleportationAnimation" type="Sprite2D" parent="."]
+scale = Vector2(2, 1)
+texture = ExtResource("1_tyn3j")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7g53o")
+}
+
+[node name="TeleportationArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2147483648
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportationArea"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_jy8wo")

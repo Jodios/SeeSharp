@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://b485h2iu3h7pk"]
 
 [ext_resource type="Script" path="res://mobs/Enemy.cs" id="1_ixxcp"]
-[ext_resource type="Texture2D" uid="uid://d2xswrpumc14w" path="res://ASSets/enemy.png" id="2_4afdg"]
+[ext_resource type="Texture2D" uid="uid://de1vf51memy2e" path="res://assets/enemy.png" id="2_4afdg"]
 [ext_resource type="PackedScene" uid="uid://cm7631fr7mb63" path="res://hud/HealthBar.tscn" id="2_n5axx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k83rq"]
@@ -69,7 +69,7 @@ hframes = 6
 position = Vector2(2.4, -2)
 scale = Vector2(0.4, 0.4)
 exclude_parent = false
-target_position = Vector2(0, 24.11)
+target_position = Vector2(0, 15.98)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_k83rq")

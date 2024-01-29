@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://e1twuuuf7tgk"]
 
 [ext_resource type="Script" path="res://Door.cs" id="1_wotj6"]
-[ext_resource type="Texture2D" uid="uid://7txoqysl1c0a" path="res://ASSets/door.png" id="1_xithy"]
+[ext_resource type="Texture2D" uid="uid://cmjsij4aepxy8" path="res://assets/door.png" id="1_xithy"]
 
 [sub_resource type="Animation" id="Animation_v38gx"]
 length = 0.001

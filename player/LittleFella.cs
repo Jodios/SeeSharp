@@ -13,6 +13,7 @@ public partial class LittleFella : CharacterBody2D
 	private int level = 1;
 	[Signal] public delegate void LittleFellaPerishedEventHandler();
 	private Global global;
+	public bool teleported;
 
 
 	// Called when the node enters the scene tree for the first time.
